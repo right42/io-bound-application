@@ -1,15 +1,18 @@
 package class101.foo.io;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 public class PostController {
 
-    @Autowired
-    PostRepository postRepository;
+    private final PostRepository postRepository;
 
     // 1. 글을 작성한다.
     @PostMapping("/post")
