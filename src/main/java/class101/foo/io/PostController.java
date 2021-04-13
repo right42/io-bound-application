@@ -20,16 +20,18 @@ public class PostController {
         return postRepository.save(post);
     }
 
-    // 2-1. 글 목록을 조회한다.
+    // 2-2 글 목록을 페이징하여 반환
     @GetMapping("/posts")
     public Page<Post> getPostList(@RequestParam(defaultValue = "1") Integer page) {
         return postRepository.findAll(PageRequest.of(page - 1, PAGE_SIZE, Sort.by("id").descending()));
     }
-    
-    // 2-2 글 목록을 페이징하여 반환
-    
+
     // 3. 글 번호로 조회
-    
+    @GetMapping("/posts/{id}")
+    public Post getPost(@PathVariable Long id) {
+        return postRepository.findById(id).get();
+    }
+
     // 4. 글 내용으로 검색 -> 해당 내용이 포함된 모든 글
 
 }
